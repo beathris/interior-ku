@@ -229,24 +229,51 @@
             {{--                </div>--}}
         </div>
     </section><!-- End Cta Section -->
+
+
     <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal"
-         aria-hidden="true" width="100%">
-        <div class="modal-dialog modal-dialog-centered">
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="container">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Basic Modal </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
+                <div class="modal-header">
+                    <div class="modal-title col-md-11 col-11">
+                        <h3 class="text-center" style="font-family: 'Arial Black'"></h3>
                     </div>
-                    <div class="modal-body">
-                        <h3>Modal Body</h3>
+                    <button type="button" class="close col-md-1 col-1" data-dismiss="modal" aria-label="Close"
+                            style="margin-left: auto; margin-right: 0">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="myCarouselDetail" class="carousel slide mx-auto" data-ride="carousel"
+                         style="width: 100%">
+                        <!-- Indicators -->
+
+                        <ol class="carousel-indicators mx-auto" id="carousel-indicators">
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" id="carouselInner">
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarouselDetail" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarouselDetail" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                    <div class="container">
+                        <h3>Ukuran</h3>
+                        <h4>2 X 2 X 2</h4>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -257,8 +284,10 @@
 
             <div class="section-title">
                 <h2>Portfolio</h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-                    consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
+                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit
+                    sint
+                    consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
+                    Quia
                     fugiat sit in iste officiis commodi quidem hic quas.</p>
             </div>
 
@@ -272,32 +301,36 @@
             </ul>
 
             <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-                {{--                @foreach($data['detail_product'] as $detail_product)--}}
-                {{--                    <div class="col-lg-4 col-md-6 portfolio-item filter-{{$detail_product->product->category_id}}">--}}
-                {{--                        <div class="portfolio-img"><img src="{{$detail_product->image1}}" class="img-fluid" alt="">--}}
-                {{--                        </div>--}}
-                {{--                        <div class="portfolio-info">--}}
-                {{--                            <h4>{{$detail_product->name}}</h4>--}}
-                {{--                            <div>--}}
-                {{--                                --}}{{--                                <p>{{$detail_product->length}} x {{$detail_product->width}}--}}
-                {{--                                --}}{{--                                    x {{$detail_product->height}}</p>--}}
-                {{--                                <div class="color"--}}
-                {{--                                     style="width: 20px; height: 20px; background-color:{{$detail_product->color}}">--}}
-                {{--                                </div>--}}
-                {{--                            </div>--}}
-                {{--                            <a href="{{$detail_product->image1}}" data-gallery="portfolioGallery"--}}
-                {{--                               class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>--}}
-                {{--                            <a class="details-link"--}}
-                {{--                               title="More Details" data-toggle="modal"--}}
-                {{--                               data-target="#exampleModal"><i--}}
-                {{--                                    class="bx bx-link"></i></a>--}}
-                {{--                        </div>--}}
-                {{--                    </div>--}}
+                @foreach($data['detail_product'] as $detail_product)
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-{{$detail_product->product->category_id}}">
+                        <div class="portfolio-img"><img src="{{$detail_product->image1}}" class="img-fluid" alt="">
+                        </div>
+                        <div class="portfolio-info">
+                            <h4>{{$detail_product->name}}</h4>
+                            <div>
+                                <p>{{$detail_product->length}} x {{$detail_product->width}}
+                                    x {{$detail_product->height}}</p>
+                                <div class="color"
+                                     style="width: 20px; height: 20px; background-color:{{$detail_product->color}}">
+                                </div>
+                            </div>
+                            <a href="{{$detail_product->image1}}" data-gallery="portfolioGallery"
+                               class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+                            <a class="details-link open-modal"
+                               title="More Details" id="btn" data-toggle="modal"
+                               data-target="#basicModal" href="#basicModal" data-product="{{$detail_product}}"><i
+                                    class="bx bx-link"></i></a>
+                            {{--                            <button class="btn btn-lg btn-success" id="btn" data-toggle="modal"--}}
+                            {{--                                    data-target="#basicModal">--}}
+                            {{--                                Click to open Modal--}}
+                            {{--                            </button>--}}
+                        </div>
+                    </div>
 
-                {{--                @endforeach--}}
-                <button class="btn btn-lg btn-success" id="btn" data-toggle="modal" data-target="#basicModal">
-                    Click to open Modal
-                </button>
+                @endforeach
+                {{--                <button class="btn btn-lg btn-success" id="btn" data-toggle="modal" data-target="#basicModal">--}}
+                {{--                    Click to open Modal--}}
+                {{--                </button>--}}
             </div>
             <!-- Add script tag with CDN link to js-cloudimage-360-view lib after all content in body tag -->
         </div>
@@ -465,8 +498,75 @@
         class="bi bi-arrow-up-short"></i></a>
 
 <script>
-    $('#btn').on('click', function () {
+    $('.open-modal').on('click', function () {
         $("#basicModal").modal("show");
+        let data_var = $(this).data('product');
+        let title = data_var['name'];
+        let images = [
+            data_var['image1'],
+            data_var['image2'],
+            data_var ['image3'],
+            data_var ['image4'],
+            data_var ['image5'],
+            data_var ['image6']
+        ]
+        //     $("#myCarouselDetail li").data('slide-to').value = i
+        //     $("#myCarouselDetail li").toggleClass(i+= 1 ? 'active' : '')
+        //     $(".carousel-inner .item").addClass(i+=1 ? 'active' : '')
+        let arrayImagesElement = document.getElementById("img-carousel");
+        let arrayIndicatorElement = document.getElementById('carousel-indicators');
+        let arrayItemCarousel = document.getElementById("carouselInner")
+
+        function createImageNode(image, location) {
+            var img = document.createElement("img");
+            img.src = location;
+            img.width = "300";
+            img.style.margin = "auto";
+            img.className = "img-fluid"
+            return img;
+        }
+
+
+        function createIndicatorCarousel(image, index) {
+            var indicator = document.createElement("li");
+            // indicator.data.targets = "#myCarouselDetail";
+            indicator.setAttribute('data-target', "#myCarouselDetail")
+            indicator.setAttribute('data-slide-to', index)
+            indicator.className = index === 0 ? 'active' : '';
+            indicator.style.width = "10px";
+            indicator.style.borderColor = '#999999';
+            console.log('#indicator', indicator)
+            return indicator;
+        }
+
+        function createItemCarousel(image, location, i) {
+            var item = document.createElement("div");
+            if (i === 0) {
+                item.className = "item active"
+            } else {
+                item.className = "item"
+            }
+            item.appendChild(createImageNode(image, location, i));
+            return item;
+        }
+
+        const filtered = images.filter(x => !!x);
+        console.log('#filter', filtered)
+        for (let image in filtered) {
+            let location = images[image]
+            var i = Object.keys(images).indexOf(image)
+            arrayIndicatorElement.appendChild(createIndicatorCarousel(image, i));
+            arrayItemCarousel.appendChild(createItemCarousel(image, location, i));
+
+            let liCarousel = $("#myCarouselDetail li");
+            liCarousel.data('slide-to', i)
+            liCarousel.data('target', "#myCrouselDetail")
+        }
+        $(".modal-title h3").text(title);
+
+    })
+    $('.close').on('click', function () {
+        $("#basicModal").modal("hide");
     })
 
 
